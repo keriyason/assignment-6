@@ -9,7 +9,8 @@ public class Charcter : MonoBehaviour
     public float speed = 5f; // speed
     public Rigidbody2D rb;
 
-    Vector2 moveDirection;
+    Vector2 moveDirection; // Move Direction
+    Vector2 mousePosition; // Mouse Direction
 
     public virtual void Awake()
     {
@@ -18,21 +19,26 @@ public class Charcter : MonoBehaviour
     public virtual void Update()
 
     {
-        Move();
+        Move(); // Move Method
     }
 
     public virtual void FixedUpdate()
     {
        
-        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
+        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed); // Movement
+
+        Vector2 aimDirection = mousePosition - rb.position; // Mouse Aim
+        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+        rb.rotation = aimAngle;
 
     }
 
     public virtual void Move()
     {
-        float mouseX = Input.GetAxisRaw("Horizontal");
-        float mouseY = Input.GetAxisRaw("Vertical");
+        float mouseX = Input.GetAxisRaw("Horizontal"); // Move Left and Right
+        float mouseY = Input.GetAxisRaw("Vertical"); // Move Up and Down
 
         moveDirection = new Vector2(mouseX, mouseY).normalized;
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 }
