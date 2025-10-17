@@ -9,8 +9,8 @@ public class Charcter : MonoBehaviour
     public float speed = 5f; // speed
     public Rigidbody2D rb;
 
-    Vector2 moveDirection; // Move Direction
-    Vector2 mousePosition; // Mouse Direction
+   public Vector2 moveDirection; // Move Direction
+   public Vector2 mousePosition; // Mouse Direction
 
     public virtual void Awake()
     {
