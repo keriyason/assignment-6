@@ -41,4 +41,13 @@ public class Charcter : MonoBehaviour
         moveDirection = new Vector2(mouseX, mouseY).normalized;
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
+    public virtual void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

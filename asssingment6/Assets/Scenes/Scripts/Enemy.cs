@@ -1,18 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Charcter
 {
-    // Start is called before the first frame update
-    void Start()
+    public static event Action<Enemy> OnEnemyKilled;
+    [SerializeField] private int maxHealth = 3;
+    public override void Awake()
     {
-        
+        base.Awake();
+        health = maxHealth;
     }
-
-    // Update is called once per frame
-    void Update()
+    public override void TakeDamage(int damage)
     {
-        
+        base.TakeDamage(damage);
+
+        OnEnemyKilled?.Invoke(this);
     }
 }
