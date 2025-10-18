@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,14 @@ public class Inventory : MonoBehaviour
 {
   public static Inventory instance;
   public List<Item> items = new List<Item>();
+  public InventoryManager manager;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            
         }
         else
         {
@@ -39,8 +41,11 @@ public class Inventory : MonoBehaviour
             items.Add(itemToAdd);
         }
         Debug.Log(itemToAdd.count + " " + itemToAdd.itemname + " addded to Inventory!"); // Prints Item Count + Name
-      
+
+        manager.UpdateSlots(items);
     }
+
+
     public void RemoveItem(Item itemToRemove)
     {
         foreach (var item in items)

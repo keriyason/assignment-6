@@ -6,30 +6,16 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public Image icon;
-    public TextMeshProUGUI labelText;
-    public TextMeshProUGUI stackSizeText;
+    public Item myItem;
 
     public void ClearSlot()
     {
         icon.enabled = false;
-        labelText.enabled = false;
-        stackSizeText.enabled = false;
     }    
 
-    public void DrawSlot(InventoryItem item)
+    public void DisplayItem(Item myitem)
     {
-        if (item == null)
-        {
-            ClearSlot();
-            return; 
-        }
-        icon.enabled = true; //Enbables UI
-        labelText.enabled = true;
-        stackSizeText.enabled = true;
-
-        icon.sprite = item.itemData.icon; // Sets Fields to Proper UI
-        labelText.text = item.itemData.displayName;
-        stackSizeText.text = item.stackSize.ToString();
-
+        this.myItem = myitem;
+        icon.sprite = myitem.icon;
     }
 }
