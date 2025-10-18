@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[System.Serializable]
+public class Item
 {
-    public string itemName; // Name of the item
+    public string itemname;
+    public int count;
+
+    public Item(string itemName, int itemCount)
+    {
+        itemname = itemName;
+        count = itemCount;
+    }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : Charcter
 {
     public Weapon weapon;
+   
 
     public override void Update()
     {
@@ -16,16 +17,5 @@ public class Player : Charcter
             weapon.Fire();
         }
     }
-    public void Collect(GameObject item)
-    {
-        Destroy(item);
-        Debug.Log("Item Collected!");
-    }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Item"))
-        {
-            Collect(other.gameObject);
-        }
-    }
+  
 }
